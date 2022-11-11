@@ -1,0 +1,34 @@
+PASSWORDS:
+	username: tate-r
+	password / Personal Access Code: GXH.9rxv^o
+	device authentication: 542884
+
+
+git init — initializes a repository.
+
+git checkout — checks out a branch from repository into the working directory.
+
+git add <file> — adds a change in a file to a change set.
+
+git commit -m <message> — commits a change set from the working directory into the repository.
+
+git push origin master - pushes changes to master branch
+
+
+
+USAGE:
+
+if you havent already, clone or download your software from github.com. 
+
+now, cd to the desired directory with the name of the repository you
+   want to edit.
+
+type " git init "
+
+now, make changes on the files as needed.
+
+then, type " git add * " and " git commit -m <your message> ".
+
+finally, type " git push origin master ". When it prompts you for your password, 
+   put in your Personal Access Code instead.
+

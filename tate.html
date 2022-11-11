@@ -1,0 +1,45 @@
+<!DOCTYPE: html>
+<html>
+<head>
+<title>vim-slime installation guide</title>
+</head>
+
+<body>
+<pre>To get vim-slime to work we need to install 3 things in the order listed.
+
+INSTALLING THE BASIC APPLICATIONS:
+	pi@tatespi:~ $ sudo apt-get install vim
+	pi@tatespi:~ $ sudo apt-get install tmux
+
+
+INSTALLING PATHOGEN.VIM:
+Do this:
+	pi@tatespi:~ $ mkdir -p ~/.vim/autoload ~/.vim/bundle
+	pi@tatespi:~ $ curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+Next:
+	pi@tatespi:~ $ vim ~/.vimrc
+
+and insert the following:
+		execute pathogen#infect()
+		syntax on
+		filetype plugin indent on
+
+
+INSTALLING VIM-SLIME:
+	pi@tatespi:~ $ cd ~/.vim/bundle
+	pi@tatespi:~ $ git clone git://github.com/jpalardy/vim-slime.git
+Now:
+	pi@tatespi:~ $ cd
+	pi@tatespi:~ $ vim .vimrc
+and add:
+	let g:slime_target = "tmux"
+
+Now, you're ready to use it!
+
+P.S.: When you are prompted for "tmux socket name or absolute path:", hit default.
+When you are prompted for the "tmux target pane", type in 0.1 (assuming you have
+2 windows, with tmux on the left).
+</pre>
+</body>
+</html>
+

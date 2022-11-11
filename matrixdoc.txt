@@ -1,0 +1,268 @@
+		MATRIX.PY
+
+author:Tate Rowney
+
+
+    Matrix.py is made for both python2.7 & python3.5. For the python3 
+version, the file is called "matrixpy3.py". Otherwise, the commands are the
+same.
+
+PLEASE NOTE : Be aware that "floats" are sometimes used in place in place
+of "ints" throughout the libraries.
+
+
+	    Matrix.py covers the following areas; VECTORS, MATRICIES and
+	PLOTTING with the matplotlib library. All these are described below.
+
+
+		--------------------------------------------
+
+				VECTORS
+                                _______
+
+	To create a vector object, type the following code:
+
+		>>> from matrix import * 
+		>>> my_vector = Vector([2,3])
+
+	The parameters are the coordinates of this vector; you can make it 
+	as long as you please.
+
+		>>> my_large_vector = Vector([1,2,3,4,5,6,7,8,9])
+
+	To reference it later, we can do this:
+
+		>>> print(my_vector)
+		vector [2,3] in dimention R2
+
+	"R2" is the dimention that the vector is in. Since there are two 
+	coordinates in this vector, the dimention is written "R2",
+	meaning the Second Dimention.
+
+	We can obtain the dimention as an integer like so:
+
+		>>> dim(my_vector)
+		2
+		>>> dim(my_large_vector)
+		9
+
+	Adding, subtracting, and scaling vectors is also important in linear
+	algebra. Adding can be performed as follows:
+
+		>>> v1 = Vector([2,3])
+		>>> v2 = Vector([4,5])
+		>>> print(v1 + v2)
+		vector [6,8] in dimention R2
+
+			  OR
+
+		>>> new_vec = v2 + v1
+		>>> print(new_vec)	
+		vector [6,8] in dimention R2
+
+	Subtracting works on the same principle:
+
+		>>> print(v2 - v1)
+		vector [2,2] in dimention R2
+		>>> print(v1 - v2)
+		vector [-2,-2] in dimention R2
+
+	We can use the '*' symbol to scale the vector (essentially making 
+	it reach farther). Here is an example:
+
+		>>> V=Vector([5,5])
+		>>> print(V*5)
+		vector [25,25] in dimention R2
+		>>> V2 = V*5
+		>>> print(V2)
+		vector [25,25] in dimention R2
+
+	Scaling down works on the same principle:
+
+		>>> print(V2 / 5)
+		vector [5,5] in dimention R2
+
+	If you need the raw coordinates of a vector, do as follows:
+
+		>>> V.coords
+		[5,5]
+		>>> V2.coords
+		[25,25]
+
+	Be aware that there are limitations to the scope of linear
+	algebra:
+
+		>>> v1=Vector([2,4])
+		>>> v2=Vector([3,6,9])
+		>>> print(v1 + v2)
+		Traceback (most recent call last):
+		  File "<stdin>", line 1, in <module>
+		  File "matrixpy3.py", line 23, in __add__
+		    raise TypeError('in vector addition , both elements must be
+ 		    vectors of the same dimention')
+		TypeError: in vector addition , both elements must be vectors of
+ 		    the same dimention
+
+	The same happens with subtraction. Multiplication of two vectors is 
+	impossible.
+
+		----------------------------------------
+
+			      MATRICIES
+			      _________
+
+	A matrix is a transformation that is applied to a vector. It can
+	rotate, invert, crush, and mirror vectors.
+	A matrix is usually written as a grid of numbers like so:
+
+			   [ 1 , 2 , 3 ]
+			   | 4 , 5 , 6 |
+			   | 7 , 8 , 9 |
+			   [ 10, 11, 12]
+
+	These "grids" take in different coordinates of the vector and change
+	them based on the other numbers in that row of the matrix.
+
+	To create a matrix, perform the following action:
+
+		>>> my_matrix = Matrix([[1,2],[3,4]])
+
+	"Matrix()" takes one parameter; each component of this list (which
+	itself is also a list) is one HORIZONTAL row of the matrix.
+
+	To reference the components of a matrix, do the following:
+
+		>>> print(my_matrix)
+		[1,2]
+		[3,4]
+
+	We can get individual items of the matrix like so:
+
+		>>> print(my_matrix[1][0])
+		3
+
+	where the first index is the horizontal row and the second is the
+	vertical column (please note that this is done with zero-based 
+	counting).
+
+	If the components are needed as integers, this is useful:
+
+		>>> print(my_matrix.matrix)
+		[[1,2],[3,4]]
+
+	This gives back a list of lists of integers, in the same manner that
+	we gave them.
+
+	You may also need to refer to rows and columns. This is easily done.
+	For example, the first row can be found like so:
+
+		>>> my_matrix.rows[0]
+		[1,2]
+
+	or the second column like this:
+
+		>>> my_matrix.cols[1]
+		[2,4]
+
+	This is done from left to right and top to bottom.
+
+	Of course, the purpose of matricies is to use them as transformations
+	on vectors. This can be done quite simply:
+
+		>>> vec=Vector([2,3])
+		>>> mat=Matrix([[2,3],[4,5]])
+		>>> print(mat * vec)
+		vector [16,21] in dimention R2
+		>>> print(vec * mat)
+		vector [16,21] in dimention R2
+
+	Remember, a matrix can only take in a vector the same length as its
+	height, and gives out a vector as long as its width. If you give the
+	wrong sized vector, you will see an error like this:
+
+		   TypeError: vector of length 3 is not compatable with a 
+		matrix of height 2
+
+	Matricies are so useful because they are versatile; specificly, we
+	can add, subtract, multiply, divide and exponentiate them. To do 
+	this, we can use the normal operations that we use on integers:
+
+		>>> m1=Matrix([[3,3],[3,3]])
+		>>> m2=Matrix([[4,5],[6,7]])
+		>>> print(m1 + m2)
+		[7.0, 8.0]
+		[9.0,10.0]
+
+		>>> print(m2 - m1)
+		[1.0, 2.0]
+		[3.0, 4.0]
+
+		>>> print(m1 * m2)
+		[30.0, 36.0]
+		[30.0, 36.0]
+
+		>>> print(m1 / m2)
+		[-1.5, 1.5]
+		[-1.5, 1.5]
+
+		>>> print(m1**2)
+		[18.0, 18.0]
+		[18.0, 18.0]
+
+	Be aware that multiplication is NOT comutitive with two matricies:
+
+		>>> print(m1 * m2)
+		[30.0, 36.0]
+		[30.0, 36.0]
+
+		>>> print(m2 * m1)
+		[27.0, 27.0]
+		[39.0, 39.0]
+
+	And that some division problems are not possible:
+
+		>>> print(m2 / m1)
+		None
+
+	Scaling matricies in the same way that we scaled vectors is possible.
+	We can do it in the same way:
+
+		>>> print(m2 * 2)
+		[8.0, 10.0]
+		[12.0,14.0]
+
+	Many matricies also have an inverse, such that a vector applied to 
+	a matrix times that matrix`s inverse is equal to the original
+	vector. To obtain the inverse of a matrix, the following syntax is
+	required:
+
+		>>> m = Matrix([[1,2],[3,4]])
+		>>> m2 = ~m
+		>>> print(m2)
+		[-2.0, 1.0]
+		[1.5, -0.5]
+
+		>>> v = Vector([1,1])
+		>>> print(v*(m*m2))
+		vector [1,1] in dimention R2
+
+	In every finite vectorspace, there is one identity matrix, such that
+	a matrix times the identity is equal to the original matrix. Such a
+	matrix can be obtained like so:
+
+		>>> identity=identities[3]
+
+	"identities[3]" is the identity matrix for a three-dimentional
+	vectorspace. We can see that it works:
+
+		>>> V=Vector([[1,2],[3,4],[5,6]])
+		>>> V == V * identity
+		True
+
+
+                -------------------------------------
+
+                              PLOTTING
+                              ________
+
+	This program uses matplotlib to plot vectors.
